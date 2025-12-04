@@ -114,8 +114,8 @@ echo $response;
 ### Architecture Diagram
 ![Architecture Diagram](images/ai_furniture_architecture.png)
 
-### Application UI
-![Application UI](images/ui.png)
-
 ### n8n Workflow
 ![n8n Workflow](images/n8n.png)
+
+### Application UI
+![Application UI](images/ui.png)
