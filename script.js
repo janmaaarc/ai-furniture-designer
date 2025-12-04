@@ -11,19 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const showView = (view) => {
-        // Hide all main components first
-        ui.mainCard.style.display = 'none';
         ui.loader.style.display = 'none';
         ui.resultContainer.style.display = 'none';
-        document.body.classList.remove('loading-active');
 
         if (view === 'form') {
             ui.mainCard.style.display = 'block';
+            ui.mainCard.classList.remove('loading-active');
             ui.result.innerHTML = '';
         } else if (view === 'loader') {
-            ui.loader.style.display = 'flex'; // Use flex to center content
+            ui.mainCard.style.display = 'block';
             ui.mainCard.classList.add('loading-active');
+            ui.loader.style.display = 'flex';
         } else if (view === 'result') {
+            ui.mainCard.style.display = 'none';
             ui.resultContainer.style.display = 'block';
         }
     };
@@ -32,34 +32,31 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isLoading) {
             generateBtn.disabled = true;
             generateBtn.classList.add('loading');
-            // Show the button's spinner
-            generateBtn.querySelector('.spinner').style.display = 'block';
         } else {
             generateBtn.disabled = false;
             generateBtn.classList.remove('loading');
-            // Hide the button's spinner
-            generateBtn.querySelector('.spinner').style.display = 'none';
         }
     };
 
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
-
-        // Check if the form is valid using browser's built-in validation
+    const handleGenerationRequest = async () => {
         if (!furnitureForm.checkValidity()) {
-            // If not, trigger the browser's validation messages to show the user what's missing
             furnitureForm.reportValidity();
-            return; // Stop the function here
+            return;
         }
-
-        // The webhook URL is sourced from config.js, which is not committed to Git.
+        
         const webhookUrl = window.N8N_WEBHOOK_URL;
+        if (!webhookUrl) {
+            console.error('N8N_WEBHOOK_URL is not defined. Please set it in your environment.');
+            ui.result.innerHTML = `<p style="text-align:center; color:red; padding: 40px;">Configuration error: The webhook URL is not set. Please contact support.</p>`;
+            showView('result');
+            return;
+        }
 
         const formData = new FormData(furnitureForm);
         const data = Object.fromEntries(formData.entries());
 
         setButtonLoadingState(true);
-        showView('loader'); // Switch to loader view
+        showView('loader');
 
         try {
             const response = await fetch(webhookUrl, {
@@ -78,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (htmlResponse && !htmlResponse.includes('undefined')) {
                 ui.result.innerHTML = htmlResponse;
-                showView('result'); // Switch to result view (Full Width)
+                showView('result');
             } else {
                 throw new Error('Received an empty or invalid response from the server.');
             }
@@ -86,24 +83,20 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             console.error('Error sending data to n8n:', error);
             ui.result.innerHTML = `<p style="text-align:center; color:red; padding: 40px;">An error occurred while generating the page. Please try again later.</p>`;
-            showView('result'); // Show error in result view
-        } finally {
             setButtonLoadingState(false);
-            ui.mainCard.classList.remove('loading-active');
+            showView('result');
         }
     };
 
     const resetForm = () => {
         furnitureForm.reset();
-        showView('form'); // Go back to small card mode
-        ui.mainCard.classList.remove('loading-active');
+        setButtonLoadingState(false);
+        showView('form');
     };
 
-    furnitureForm.addEventListener('submit', handleFormSubmit);
+    generateBtn.addEventListener('click', handleGenerationRequest);
     if (closeResultBtn) {
         closeResultBtn.addEventListener('click', resetForm);
     }
-
-    // Set the initial view when the page loads
     showView('form');
 });

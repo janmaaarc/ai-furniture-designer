@@ -85,7 +85,7 @@ body {
 .input-icon {
     position: absolute;
     left: 1rem;
-     top: calc(1.6em + 0.5rem + 0.75rem);
+    top: calc(1.6em + 0.5rem + 0.75rem);
     display: flex;
     align-items: center;
     color: #9ca3af;
