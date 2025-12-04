@@ -41,12 +41,13 @@ To get this project running on your local machine for development and testing, f
     ```
 
 2.  **Configure the Webhook URL:**
-    Create a new file named `config.js` in the root of the project. This file is intentionally ignored by Git (via `.gitignore`) to keep your webhook URL private. Add the following content, replacing the placeholder with your actual n8n webhook URL:
+    Copy the example configuration file `config.example.php` to a new file named `config.local.php`. This file is ignored by Git to keep your webhook URL private.
 
-    ```javascript
-    // /config.js
-    window.N8N_WEBHOOK_URL = 'https://your-n8n-instance.com/webhook/your-webhook-id';
+    ```bash
+    cp config.example.php config.local.php
     ```
+
+    Then, edit `config.local.php` and replace the placeholder with your actual n8n webhook URL.
 
 3.  **Run the application:**
     Navigate to the project directory in your terminal and start the PHP built-in server:

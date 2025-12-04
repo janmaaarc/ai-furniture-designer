@@ -44,14 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        const webhookUrl = window.N8N_WEBHOOK_URL;
-        if (!webhookUrl) {
-            console.error('N8N_WEBHOOK_URL is not defined. Please set it in your environment.');
-            ui.result.innerHTML = `<p style="text-align:center; color:red; padding: 40px;">Configuration error: The webhook URL is not set. Please contact support.</p>`;
-            showView('result');
-            return;
-        }
-
         const formData = new FormData(furnitureForm);
         const data = Object.fromEntries(formData.entries());
 
@@ -59,7 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
         showView('loader');
 
         try {
-            const response = await fetch(webhookUrl, {
+            // Point the fetch request to the local proxy script.
+            const response = await fetch('generate.php', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {

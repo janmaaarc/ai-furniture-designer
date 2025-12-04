@@ -1,5 +1,5 @@
 # Ignore environment-specific configuration files
-config.js
+config.local.php
 
 # Ignore common system files
 .DS_Store
