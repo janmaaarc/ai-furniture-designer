@@ -118,4 +118,4 @@ echo $response;
 ![Application UI](images/ui.png)
 
 ### n8n Workflow
-![n8n Workflow](images/n8n.jpg)
+![n8n Workflow](images/n8n.png)
