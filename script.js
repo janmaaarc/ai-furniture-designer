@@ -63,7 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
-                    'Content-Type': 'application/json'
+                    // Change content type to bypass CORS preflight issues. n8n can still parse this.
+                    'Content-Type': 'text/plain'
                 }
             });
 
@@ -82,9 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error('Error sending data to n8n:', error);
-            // Temporarily display the detailed error in the UI for debugging
-            const errorMessage = `An error occurred while generating the page. Please try again later.<br><br><small style="color: #6c757d;">Debug Info: ${error.message}</small>`;
-            ui.result.innerHTML = `<p style="text-align:center; color:red; padding: 40px;">${errorMessage}</p>`;
+            const userMessage = `An error occurred while generating the page. Please try again later.`;
+            ui.result.innerHTML = `<p style="text-align:center; color:red; padding: 40px;">${userMessage}</p>`;
             setButtonLoadingState(false);
             showView('result');
         }
