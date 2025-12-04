@@ -1,4 +1,4 @@
-# AI Furniture Designer
+# AI-Powered Furniture Landing Page Generator
  
 A dynamic web application that allows users to generate a custom furniture landing page using AI. Users select their preferences for furniture type, budget, and style, and the application communicates with an AI backend (n8n and Gemini) to produce a unique, visually appealing webpage.
  
@@ -96,12 +96,12 @@ echo $response;
 ## File Structure
 
 ```text
-├── images/                 # Contains application screenshots and diagrams.
+├── images/                 # Application screenshots and architecture diagrams.
 ├── .gitignore              # Specifies intentionally untracked files to ignore.
 ├── 01-main.config          # AWS Elastic Beanstalk configuration for deployment.
 ├── README.md               # You are here!
-├── config.example.php      # Example configuration for local development.
-├── generate.php            # Server-side proxy to securely handle n8n webhook calls.
+├── config.example.php      # Example local configuration.
+├── generate.php            # Server-side proxy to handle n8n webhook requests.
 ├── index.php               # Main PHP file that renders the application UI.
 ├── script.js               # Handles form submission and UI updates.
 └── style.css               # Custom CSS for styling the application.
