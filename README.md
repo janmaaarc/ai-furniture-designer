@@ -96,6 +96,7 @@ echo $response;
 ## File Structure
 
 ```text
+├── images/                 # Contains application screenshots and diagrams.
 ├── .gitignore              # Specifies intentionally untracked files to ignore.
 ├── 01-main.config          # AWS Elastic Beanstalk configuration for deployment.
 ├── README.md               # You are here!
@@ -114,4 +115,7 @@ echo $response;
 ![Architecture Diagram](images/ai_furniture_architecture.png)
 
 ### Application UI
-![pplication UI](images/ui.png)
+![Application UI](images/ui.png)
+
+### n8n Workflow
+![n8n Workflow](images/n8n.jpg)
