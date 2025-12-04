@@ -36,7 +36,7 @@ To get this project running on your local machine for development and testing, f
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/ai-powered-furniture.git
+    git clone https://github.com/janmaaarc/ai-powered-furniture-page.git
     cd ai-powered-furniture
     ```
 

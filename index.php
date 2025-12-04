@@ -100,7 +100,11 @@ function generate_options(array $options, string $selectedValue = ''): void {
         </div>
     </div>
 
-    <script src="config.js"></script>
+    <script>
+        // The webhook URL is injected by the server.
+        // For local development, you can manually set it here like this:
+        // window.N8N_WEBHOOK_URL = 'http://your-local-webhook-url.com';
+    </script>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
