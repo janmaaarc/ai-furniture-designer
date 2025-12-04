@@ -1,7 +1,19 @@
 # AI-Powered Furniture Landing Page Generator
  
-A dynamic web application that allows users to generate a custom furniture landing page using AI. Users select their preferences for furniture type, budget, and style, and the application communicates with an AI backend (n8n and Gemini) to produce a unique, visually appealing webpage.
+A dynamic web application that lets users generate custom furniture landing pages using AI. Users select preferences such as furniture type, style, and budget, and the application communicates with an n8n workflow and Gemini AI via a secure PHP proxy backend to generate fully customized, visually appealing webpages on demand.
  
+---
+
+## Tech Stack
+
+| Category             | Technologies Used                                         |
+|---------------------|-----------------------------------------------------------|
+| Front-End           | HTML, CSS, JavaScript                                     |
+| Back-End / Proxy    | PHP                                                       |
+| AI / Workflow       | n8n, AI (Gemini), Webhook                                  |
+| Cloud / Deployment  | AWS Elastic Beanstalk, AWS EC2, AWS CodePipeline          |
+| Security / Access   | AWS IAM, Server-side Proxy, Environment Variables        |
+
 ---
  
 ## Objectives
